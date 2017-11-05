@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .d1{
+            width:95px;
+            height:25px;
+            position:relative;
+            display: inline-block;
+            text-align:center;
+            font-size: 12px;
+            line-height:25px;
+        }
+        .word{
+            float:left;
+            border-top:1px solid #Ccc;
+            border-bottom:1px solid #Ccc;
+            width:80px;
+            height:25px;
+            display: inline-block;
+            box-sizing:border-box;
+        }
+        .tri{
+            width:0;
+            height:0;
+            border-left:15px solid white;
+            border-bottom:12px solid transparent;
+            border-top:12px solid transparent;
+            position:absolute;
+            float:left;
+        }
+        .tri1{
+            width:0;
+            height:0;
+            border-left:15px solid #ccc;
+            border-bottom:12.5px solid transparent;
+            border-top:12.5px solid transparent;
+            float:left;
+            position:absolute;
+            left:0;
+        }
+        .tri2{
+            width:0;
+            height:0;
+            border-left:15px solid #ccc;
+            border-bottom:12.5px solid transparent;
+            border-top:12.5px solid transparent;
+            float:left;
+
+        }
+        .t1{
+            left:79px;
+            top:0.5px;
+        }
+        .t2{
+            left:-1px;
+            top:0.5px;
+        }
+        .border{
+            border-left:1px solid #ccc;
+        }
+        .border2{
+            border-right:1px solid #ccc;
+        }
+        .d5{
+            border:red solid 1px;
+            box-sizing:border-box;
+            width:95px;
+            height:25px;
+            display:inline-block;
+            position:absolute;
+            left:307px;
+            top:20px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 25px;
+            display: none;
+            color:red;
+        }
+        .d4{
+            width:95px;
+            height:25px;
+            position:relative;
+            display: inline-block;
+            text-align:center;
+            font-size: 12px;
+            line-height:25px;
+        }
+        .h{
+            width:95px;
+        }
+    </style>
+</head>
+<body>
+<div class="d1 d">
+    <div class="tri1 t1 blue"></div>
+    <div class="word border"></div>
+    <div class="tri2"></div>
+</div>
+<div class="d1 d">
+    <div class="tri t1 blue"></div>
+    <div class="tri1"></div>
+    <div class="word"></div>
+    <div class="tri2"></div>
+    <div class="tri t2"></div>
+</div>
+<div class="d1 d">
+    <div class="tri t1 blue"></div>
+    <div class="tri1 blue1"></div>
+    <div class="word"></div>
+    <div class="tri2"></div>
+    <div class="tri t2"></div>
+</div>
+<div class="d4 d">
+    <div class="tri1 tri2 blue"></div>
+    <div class="word h border2"></div>
+    <div class="tri t2 "></div>
+</div>
+<div class="d5">
+
+</div>
+<script>
+  var array=[{"name":"待接单","status":"WAIT_ACCEPT","isShadowed":true},{"name":"待发货","status":"WAIT_DELIVER","isShadowed":true},{"name":"验货入库","status":"STOCK_IN","isShadowed":true},{"name":"已完成","status":"DELIVERED","isShadowed":true}];
+    //var array=[{"name":"已终止","status":"WAIT_ACCEPT","isShadowed":true}]
+   //var array=[{"name":"待接单","status":"WAIT_ACCEPT","isShadowed":true},{"name":"待发货","status":"WAIT_DELIVER","isShadowed":true,"isCurrentStatus":true},{"name":"验货入库","status":"STOCK_IN"},{"name":"已完成","status":"DELIVERED"}]
+   //var array=[{"name":"待接单","status":"WAIT_ACCEPT","isShadowed":true},{"name":"待发货","status":"WAIT_DELIVER","isShadowed":true,"isCurrentStatus":true},{"name":"验货入库","status":"STOCK_IN","isShadowed":true,"isCurrentStatus":true},{"name":"已完成","status":"DELIVERED","isShadowed":true,"isCurrentStatus":true}];
+   var len = array.length;
+    if(array.length >1){
+        var divList=document.getElementsByClassName("word");
+        var triggle = document.getElementsByClassName("blue");
+        var tri2 = document.getElementsByClassName("tri2");
+        var tri1=document.getElementsByClassName("tri1");
+        var word =document.getElementsByClassName("word");
+        for(var i=0;i<array.length;i++){
+            divList[i].innerHTML=array[i].name;
+            if(array[i].isShadowed == true){
+                divList[i].style.background="#F6F6F6";
+                triggle[i].style.borderLeft="solid 15px #F6F6F6";
+                if(array[i].isCurrentStatus == true ){
+                    divList[i].style.background="#108EE9";
+                    triggle[i].style.borderLeft="solid 15px #108EE9";
+                    tri2[i].style.borderLeft="solid 15px #108EE9";
+                    word[i].style.border="1px solid #108EE9";
+                    tri1[i].style.borderLeft="solid 15px #108EE9";
+                }
+            }
+        }
+    }else if(len==1){
+        var d5=document.getElementsByClassName("d5")[0];
+        var d =document.getElementsByClassName("d");
+        for(var i=0;i< d.length;i++){
+            d[i].style.display="none";
+        }
+        d5.style.display="block";
+        d5.innerHTML=array[0].name;
+    }
+
+</script>
+</body>
+</html>
